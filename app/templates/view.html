@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <h5 class="card-title">{{ mlb.Name }}</h5>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Name:</strong> {{ mlb.Name }}</li>
+        <li class="list-group-item"><strong>Team:</strong> {{ mlb.Team }}</li>
+        <li class="list-group-item"><strong>Position:</strong> {{ mlb.Position }}</li>
+        <li class="list-group-item"><strong>Height (Inches):</strong> {{ mlb.Height_inches }}</li>
+        <li class="list-group-item"><strong>Weight (Lbs):</strong> {{ mlb.Weight_lbs }}</li>
+        <li class="list-group-item"><strong>Age:</strong> {{ mlb.Age }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="/edit/{{mlb.id}}" class="card-link btn btn-primary">edit</a>
+    </div>
+</div>
+<form action="/delete/{{mlb.id}}" method="post"><button type="submit" class="btn btn-danger">Save</button></form>
+
+
+{% endblock %}
+

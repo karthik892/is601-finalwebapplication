@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<a href="/new" class="btn btn-primary">New</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col"> Name</th>
+        <th scope="col">Team</th>
+        <th scope="col">Position</th>
+        <th scope="col">Height (in)</th>
+        <th scope="col">weight (lb)</th>
+        <th scope="col">Age</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for player in mlb %}
+    <tr>
+        <td><a href="/view/{{ player.id }}">{{ player.Name }}</a></td>
+        <td>{{ player.Team }}</td>
+        <td>{{ player.Position }}</td>
+        <td>{{ player.Height_inches }}</td>
+        <td>{{ player.Weight_lbs }}</td>
+        <td>{{ player.Age }}</td>
+        <td>
+            <a href="/edit/{{ player.id }}" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-danger" onclick="confirmDelete( {{ player.id }} , '{{ player.Name }}' )">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+    function confirmDelete(id, name) {
+        conf = confirm("Are you sure you wan't to delete the following record: " + name);
+        if (conf) window.location = "/delete/" + id;
+    }
+</script>
+{% endblock %}
