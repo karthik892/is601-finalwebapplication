@@ -21,6 +21,19 @@ def index():
     result = cursor.fetchall()
     return render_template('index.html', title='Home', mlb=result)
 
+@app.route("/chart_stats", methods=['GET'])
+def chartStatsPage():
+    return render_template('chart_stats.html', title='Chart Stats')
+
+@app.route('/api/mlb_chart', methods=['GET'])
+def api_mlb_stats() -> str:
+    cursor = mysql.get_db().cursor()
+    cursor.execute('select team, count(*) as count from mlb_players group by team')
+    result = cursor.fetchall()
+    json_result = json.dumps(result)
+    resp = Response(json_result, status=200, mimetype='application/json')
+    return resp
+
 @app.route('/view/<int:mlb_id>', methods=['GET'])
 def record_view(mlb_id):
     cursor = mysql.get_db().cursor()
@@ -71,14 +84,6 @@ def form_delete_post(city_id):
     mysql.get_db().commit()
     return redirect("/", code=302)
 
-@app.route('/api/mlb', methods=['GET'])
-def api_mlb_list() -> str:
-    cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM mlb_players')
-    result = cursor.fetchall()
-    json_result = json.dumps(result)
-    resp = Response(json_result, status=200, mimetype='application/json')
-    return resp
 
 @app.route('/api/mlb/<int:mlb_id>', methods=['GET'])
 def api_mlb_view(mlb_id) -> str:
