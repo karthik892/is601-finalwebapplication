@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="col-12">
+    <div id="container"></div>
+</div>
+<script src="https://code.highcharts.com/9.1.0/highcharts.js"></script>
+<script>
+    var seriesData = [];
+    var categoriesData = [];
+    fetch('/api/mlb_chart')
+        .then(response => response.json())
+        .then(data => {
+            seriesData = [];
+            data.forEach(element => {
+                seriesData.push(element.count)
+                categoriesData.push(element.team);
+            });
+            buildChart();
+        });
+
+    function buildChart() {
+
+        Highcharts.chart('container', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Number of players by team'
+            },
+            xAxis: {
+                categories: categoriesData,
+                title: {
+                    text: "Team"
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of players',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name:"# players",
+                    data: seriesData
+                }
+            ]
+        });
+    }
+
+</script>
+
+{% endblock %}
