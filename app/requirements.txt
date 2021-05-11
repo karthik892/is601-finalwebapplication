@@ -3,3 +3,4 @@ flask-mysql
 flask-login
 simplejson
 sendgrid
+python-dotenv

@@ -11,6 +11,10 @@ import random
 
 from . import mysql
 
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
@@ -78,9 +82,9 @@ def signup_post():
     sql_insert_query = """INSERT INTO user (`email`, `password`, `email_verified`, `email_key`) VALUES (%s, %s, 0, %s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
-
+    
     #send activation email
-    sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+    sg = sendgrid.SendGridAPIClient(api_key=os.getenv('SENDGRID_API_KEY'))
     from_email = Email("ks584@njit.edu")
     to_email = To(email)
     subject = "IS601 MLBPlayers - Email verification and account activation"
