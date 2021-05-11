@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 32000,
+            "driver": "MySQL",
+            "name": "Docker MySQL",
+            "username": "root",
+            "password": "root",
+            "database": "citiesData"
+        }
+    ]
+}
