@@ -7,6 +7,12 @@ In this project, the code from the previous homework assignment ([here](https://
 - A chart to display statistics
 - A user authentication system with support for user registration and e-mail verification
 
+# Team members
+
+While thisproject was initially intended to be completed by a group of 2 people. Circumstances have required me to complete this entire project on my own.
+- Karthik Sankaran
+
+
 # Running the application
 
 ## Obtain a sendgrid API key
