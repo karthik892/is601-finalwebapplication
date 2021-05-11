@@ -111,3 +111,11 @@ INSERT INTO mlb_players (`Name`, `Team`, `Position`, `Height_inches`, `Weight_lb
     ('Justin Speier','ANA','Relief Pitcher',76,205,33.31),
     ('Darren Oliver','ANA','Relief Pitcher',74,220,36.4),
     ('Hector Carrasco','ANA','Relief Pitcher',74,220,37.36);
+
+CREATE TABLE IF NOT EXISTS user (
+    `id`                INT         NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+    `email`             VARCHAR(100)  NOT NULL ,
+    `password`          VARCHAR(100),
+    `email_verified`    INT(1),
+    `email_key`         VARCHAR(20)
+);
