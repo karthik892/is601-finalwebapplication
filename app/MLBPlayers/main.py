@@ -71,7 +71,7 @@ def form_insert_get():
 def form_insert_post():
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('fldName'), request.form.get('fldTeam'), request.form.get('fldPosition'),
-                 request.form.get('fldWeight'), request.form.get('fldHeight'),
+                 request.form.get('fldHeight'), request.form.get('fldWeight'), 
                  request.form.get('fldAge'))
     sql_insert_query = """INSERT INTO mlb_players (`Name`, `Team`, `Position`, `Height_inches`, `Weight_lbs`, `Age`) VALUES (%s, %s,%s, %s,%s, %s) """
     cursor.execute(sql_insert_query, inputData)
